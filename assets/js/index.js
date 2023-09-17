@@ -1,50 +1,50 @@
-// Атрибути
+// Task: При натисканні на кнопку:
 
-// Через властивості
-const p1 = document.querySelector('#p1');
+// Отримати заголовок першого рівня
+//   і встановити для нього інший колір тла.
+// * Виставити для заголовків другого рівня розмір шрифта 20px і їх колір.
 
-// атрибути елементів - це властивості відповідних об'єктів
-console.log(p1.title);
-// вивести id у p1
-console.log(p1.id);
+// Встановити src i alt, розміри для головного зображення.
+// * Встановити src i alt, розміри для зображень в кожному атіклі.
 
-p1.title = 'New title';
-// булевські атрибути
-// p1.hidden = true;
+// 1 Отримати посилання на кнопку
+// 2 Задати функцію обробник і навісити її
+//   як обробник події на click
+// 3 Прописати функціонал цього обробника
+//   Отримати посилання на h1
+//   встановити для h1 колір тла
+//   ...
 
-p1.style.color = 'red';
-p1.style.backgroundColor = 'orange';
+// 1
+const btn = document.querySelector('button');
+// 2
+function clickHandler(e) {
+  // 3
+  const h1 = document.querySelector('h1');
+  h1.setAttribute('style', 'background-color: orange;');
 
-// Через методи
-const p2 = document.querySelector('#p2');
-p2.setAttribute('title', 'Title of p2'); // <p id="p2" title="Title of p2"
-p2.setAttribute('style', 'font-size: 10px; color: yellow;'); // style="font-size: 10px; color: yellow;"
-// p2.setAttribute('hidden', 'hidden'); // <p hidden ...
+  const img = document.querySelector('.mainImg');
+  img.src =
+    'https://cdn.pixabay.com/photo/2015/11/16/14/43/cat-1045782_640.jpg';
+  img.alt = 'cat';
+  img.style.width = '300px';
+  img.style.height = '100px';
+  img.style.objectFit = 'cover';
 
-console.log(p2.getAttribute('style'));
+  const h2s = document.querySelectorAll('h2');
+  h2s.forEach(h2 => {
+    h2.style.fontSize = '20px';
+    h2.style.color = 'green';
+    //h2.setAttribute("style", "font-size:20px; color:green;");
+  });
 
-// Задати для body колір тла на вибір
-
-// document.querySelector('body').style.backgroundColor = 'green';
-
-// const body = document.querySelector('body');
-// body.style.backgroundColor = 'green';
-
-document.body.setAttribute('style', 'background-color: green;');
-
-// зміна контенту в елементі
-p2.textContent = 'New content';
-
-// Задати атрибути зображення по об'єкту
-const imgAttr = {
-  src: 'https://cdn.pixabay.com/photo/2015/11/16/14/43/cat-1045782_640.jpg',
-  alt: 'cat',
-};
-
-const imgEl = document.querySelector('img');
-
-imgEl.src = imgAttr.src;
-imgEl.alt = imgAttr.alt;
-// задати розміри зображенню
-// imgEl.setAttribute('width', '400');
-imgEl.setAttribute('style', 'width: 400px;');
+  const sectionImgs = document.querySelectorAll('.sectionImage');
+  sectionImgs.forEach(img => {
+    img.src =
+      'https://cdn.pixabay.com/photo/2015/11/16/14/43/cat-1045782_640.jpg';
+    img.alt = 'cat';
+    img.width = 300;
+    img.height = 200;
+  });
+}
+btn.addEventListener('click', clickHandler);
