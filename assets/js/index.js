@@ -1,33 +1,41 @@
-// Доступ до елементів
+// Обробка подій
 
-console.log(document);
-console.log(document.head);
-console.log(document.body);
+const btn = document.getElementById('clickBtn');
 
-// document.querySelector(<selector>)
-// document.querySelectorAll(<selector>)
-// document.getElementById(<id>)
-// document.getElementsByClassName(<class>)
-// document.getElementsByTagName(<tag>)
+console.log('btn :>> ', btn);
+console.dir(btn);
 
-const rootEl = document.getElementById('root');
-console.log('rootEl :>> ', rootEl);
-console.dir(rootEl);
+const clickHandler = function (event) {
+  console.log('Btn was clicked');
+};
 
-const divEls = document.getElementsByTagName('div');
-console.log('divEls :>> ', divEls);
+btn.onclick = clickHandler;
 
-const divRoot2 = divEls[0];
+btn.onclick = null;
+//------------------------------------------------
 
-const contentDivs = document.getElementsByClassName('content');
-console.log('contentDivs :>> ', contentDivs);
+const loginBtn = document.getElementById('loginBtn');
 
-const rootEl3 = document.querySelector('#root');
-console.log('rootEl3 :>> ', rootEl3);
+function loginBtnHandler(e) {
+  alert('Log in in process');
+}
 
-const divEls1 = document.querySelectorAll('div');
-console.log('divEls1 :>> ', divEls1);
+loginBtn.addEventListener('click', loginBtnHandler);
 
-// Отримати список елементів з класом content
-const contentEls = document.querySelectorAll('.content');
-console.log(contentEls);
+loginBtn.removeEventListener('click', loginBtnHandler);
+
+//---------------------------------------------------
+// Виводити "Click me!", коли наводимо курсором миші на loginBtn
+
+function loginMouseMoveHandler(e) {
+  console.log('Click me!');
+}
+
+loginBtn.addEventListener('mousemove', loginMouseMoveHandler);
+
+// Додати кнопку і при натисканні на неї виводити "Hello world!"
+const greetingsBtn = document.getElementById('greetingsBtn');
+function greetingsBtnHandler(e) {
+  alert('Hello world');
+}
+greetingsBtn.addEventListener('click', greetingsBtnHandler);
