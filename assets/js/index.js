@@ -44,4 +44,9 @@ prevBtn.addEventListener('click', prevSlideHandler);
 function updateSlideImage(currentSlideIndex) {
   slideImg.src = slides[currentSlideIndex].src;
   slideImg.alt = slides[currentSlideIndex].alt;
+
+  slideImg.onerror = () => {
+    slideImg.src =
+      'https://kaverisias.com/kv-app/uploads/2018/01/catalog-default-img.gif';
+  };
 }
