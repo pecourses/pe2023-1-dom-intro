@@ -1,25 +1,44 @@
 // View - Spagetti
+//      ||
+//      \/
+// View - ViewModel - Model
 
-// View - *** - Model
+// Model - дані + методи роботи з ними
+class Counter {
+  constructor(counter) {
+    this.counter = counter;
+  }
+  dec() {
+    this.counter--;
+  }
+  inc() {
+    this.counter++;
+  }
+}
+
+// ViewModel
 
 const [decBtn, incBtn] = document.querySelectorAll('.counterBtn');
 const counterEl = document.querySelector('#counter');
 
-// Model
-let counter = 0;
+const count = new Counter(0);
 
-counterEl.textContent = counter;
+updateView();
 
 function decCount(e) {
-  counter--;
-  counterEl.textContent = counter;
+  count.dec();
+  updateView();
 }
 
 decBtn.addEventListener('click', decCount);
 
 function incCount(e) {
-  counter++;
-  counterEl.textContent = counter;
+  count.inc();
+  updateView();
 }
 
 incBtn.addEventListener('click', incCount);
+
+function updateView() {
+  counterEl.textContent = count.counter;
+}
