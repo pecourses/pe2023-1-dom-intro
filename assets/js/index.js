@@ -1,44 +1,16 @@
-// View - Spagetti
-//      ||
-//      \/
-// View - ViewModel - Model
+// Керування розповсюдженням подій
 
-// Model - дані + методи роботи з ними
-class Counter {
-  constructor(counter) {
-    this.counter = counter;
-  }
-  dec() {
-    this.counter--;
-  }
-  inc() {
-    this.counter++;
-  }
+const body = document.body;
+const section = document.querySelector('section');
+const button = document.querySelector('button');
+
+function btnClickHandler(e) {
+  console.log('this :>> ', this);
+  console.log('e.target :>> ', e.target);
+  console.log('e.currentTarget :>> ', e.currentTarget);
+
+  // звернення до об'єкту, на якому відбулася подія
+  this.style.backgroundColor = 'yellow';
 }
 
-// ViewModel
-
-const [decBtn, incBtn] = document.querySelectorAll('.counterBtn');
-const counterEl = document.querySelector('#counter');
-
-const count = new Counter(0);
-
-updateView();
-
-function decCount(e) {
-  count.dec();
-  updateView();
-}
-
-decBtn.addEventListener('click', decCount);
-
-function incCount(e) {
-  count.inc();
-  updateView();
-}
-
-incBtn.addEventListener('click', incCount);
-
-function updateView() {
-  counterEl.textContent = count.counter;
-}
+button.addEventListener('click', btnClickHandler);
