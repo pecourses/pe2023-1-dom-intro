@@ -1,27 +1,28 @@
-const burgerBtn = document.querySelector('.burgerMenuBtn');
-const burgerContainer = document.querySelector('.burgerMenuContainer');
+'use strict';
 
-function burgerClickHandler(e) {
-  burgerContainer.classList.toggle('burgerMenuContainerHide');
-  burgerContainer.classList.toggle('burgerMenuContainerActive');
-  console.log('btn :>> ');
-  e.stopPropagation();
-}
+const section = document.createElement('section');
 
-burgerBtn.addEventListener('click', burgerClickHandler);
+const divRoot = document.querySelector('#root');
 
-function bodyClickHandler() {
-  burgerContainer.classList.add('burgerMenuContainerHide');
-  burgerContainer.classList.remove('burgerMenuContainerActive');
-  console.log('body :>> ');
-}
+// додавання дочірнього ел-та append/prepend
+divRoot.append(section);
+section.textContent = 'Lorem ipsum';
+section.style.backgroundColor = 'grey';
 
-document.body.addEventListener(
-  'click',
-  bodyClickHandler /*, { capture: true }*/
-);
+const article = document.createElement('article');
+divRoot.prepend(article);
+article.textContent = 'article is the first child';
 
-// body capture -
-// btn capture
-// btn; X
-// body; +
+// додавання сіблінгів - before/after
+
+const btn = document.createElement('button');
+
+section.after(btn);
+btn.textContent = 'new btn';
+
+// видалення
+const divForRemove = document.querySelector('.removable');
+
+divForRemove.addEventListener('mouseenter', function () {
+  this.remove();
+});
