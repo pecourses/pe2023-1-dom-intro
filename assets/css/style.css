@@ -15,3 +15,7 @@ body {
 .div2 {
   background-color: grey;
 }
+
+.headBorder {
+  border: 5px solid red;
+}
