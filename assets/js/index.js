@@ -12,11 +12,16 @@ const [startBtn, stopBtn, resetBtn] = document.querySelectorAll(
   '.btn-container > button'
 );
 
+startBtn.onclick = startBtnHandler;
+stopBtn.onclick = stopBtnHandler;
+resetBtn.onclick = resetBtnHandler;
+
 updateTime(time);
 
 function startBtnHandler() {
   const DELAY = 100;
   function tick() {
+    // беремо стару кількість мс, додаємо DELAY і встановлюємо як нову кількість мс
     time.setMilliseconds(time.getMilliseconds() + DELAY);
     updateTime(time);
   }
@@ -25,21 +30,15 @@ function startBtnHandler() {
   }
 }
 
-startBtn.onclick = startBtnHandler;
-
 function stopBtnHandler() {
   clearInterval(intervalId);
   intervalId = null;
 }
 
-stopBtn.onclick = stopBtnHandler;
-
 function resetBtnHandler() {
   time = new Date(0);
   updateTime(time);
 }
-
-resetBtn.onclick = resetBtnHandler;
 
 function updateTime(time) {
   timeEl.textContent = `
