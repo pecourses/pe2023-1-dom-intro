@@ -1,29 +1,46 @@
 'use strict';
 
-// Користувацькі атрибути / data-*
+// setTimeout
+// setInterval
 
-const btns = document.querySelectorAll('button');
-
-// data-host => dataset.host
-function btnClickHandler(e) {
-  console.log(e.target.dataset.host);
+function timeoutAction() {
+  console.log('Hello');
 }
 
-btns.forEach(b => (b.onclick = btnClickHandler));
+console.log('Before timeout');
+const timeoutId = setTimeout(timeoutAction, 1000);
+console.log('After timeout');
+clearTimeout(timeoutId);
 
-// data-userName => dataset.username
-// data-user-name => dataset.userName
-console.log(btns[0].dataset.username);
-console.log(btns[1].dataset.userName);
+let i = 0;
+function intervalHandler() {
+  if (i === 5) {
+    return clearInterval(intervalId);
+  }
+  console.log(++i);
+}
 
-// Task: в контейнер помістити 4 кнопки
-// в залежності від того, на яку натиснули,
-// змінювати bg-колір кнопки або контейнера або body
+console.log('Before interval');
+const intervalId = setInterval(intervalHandler, 1000);
+console.log('After interval');
+// clearInterval(intervalId);
+//
+function deleteBtn() {
+  const offerBtn = document.querySelector('button');
+  offerBtn.remove();
+}
 
-const colorBtns = document.querySelectorAll('div > button');
+setTimeout(deleteBtn, 5000);
+
+// При натисканні на кнопку перефарбувати її через 2 секунди
+// * Після натискання на кнопку змінювати її колір кожні 2 секунди рандомно
+
+const colorBtn = document.querySelector('.color-btn');
 
 function changeColor(e) {
-  document.body.style.backgroundColor = e.target.dataset.color;
+  setTimeout(() => {
+    e.target.style.color = 'green';
+  }, 2000);
 }
 
-colorBtns.forEach(b => (b.onclick = changeColor));
+colorBtn.onclick = changeColor;
