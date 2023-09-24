@@ -1,46 +1,44 @@
 'use strict';
 
-// setTimeout
-// setInterval
+// start запустити накопичення мс
+// reset скинути накопичені мс
+// stop зупинити накопичення мс
 
-function timeoutAction() {
-  console.log('Hello');
-}
+// let time = new Date(0);
+let time = 0;
+let intervalId = null;
 
-console.log('Before timeout');
-const timeoutId = setTimeout(timeoutAction, 1000);
-console.log('After timeout');
-clearTimeout(timeoutId);
+const timeEl = document.querySelector('.time');
+const [startBtn, stopBtn, resetBtn] = document.querySelectorAll(
+  '.btn-container > button'
+);
 
-let i = 0;
-function intervalHandler() {
-  if (i === 5) {
-    return clearInterval(intervalId);
+function startBtnHandler() {
+  function tick() {
+    time++;
+    updateTime(time);
   }
-  console.log(++i);
+  if (!intervalId) {
+    intervalId = setInterval(tick, 1);
+  }
 }
 
-console.log('Before interval');
-const intervalId = setInterval(intervalHandler, 1000);
-console.log('After interval');
-// clearInterval(intervalId);
-//
-function deleteBtn() {
-  const offerBtn = document.querySelector('button');
-  offerBtn.remove();
+startBtn.onclick = startBtnHandler;
+
+function stopBtnHandler() {
+  clearInterval(intervalId);
+  intervalId = null;
 }
 
-setTimeout(deleteBtn, 5000);
+stopBtn.onclick = stopBtnHandler;
 
-// При натисканні на кнопку перефарбувати її через 2 секунди
-// * Після натискання на кнопку змінювати її колір кожні 2 секунди рандомно
-
-const colorBtn = document.querySelector('.color-btn');
-
-function changeColor(e) {
-  setTimeout(() => {
-    e.target.style.color = 'green';
-  }, 2000);
+function resetBtnHandler() {
+  time = 0;
+  updateTime(time);
 }
 
-colorBtn.onclick = changeColor;
+resetBtn.onclick = resetBtnHandler;
+
+function updateTime(time) {
+  timeEl.textContent = time;
+}
